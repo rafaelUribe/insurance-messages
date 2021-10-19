@@ -1,0 +1,77 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.home *{
+ font-size: 1.8rem;
+}
+
+.user-box{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    background-color: var(--dark-grey);
+}
+
+.user-box p{
+    color: white;
+}
+
+.user-box button{
+    padding: .5rem;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+}
+
+.login-box{
+    width: 80%;
+    margin-top: 3rem;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+    background-color: var(--item-color);
+    border-radius: 2rem;
+}
+
+.login-box h3{
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.login-box input{
+    text-align: center;
+}
+
+.login-box *{
+    width: 100%;
+}
+
+.login-box p{
+    text-align: center;
+    color: red;
+}
+
+.leads{
+    margin-top: 2rem;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+}
+
+.lead{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    background-color: var(--item-color);
+    padding: 1rem 0;
+    border-radius: 2rem;
+}
+
+

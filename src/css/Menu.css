@@ -1,0 +1,51 @@
+.menu{
+    background-color: var(--hyundai-blue);
+}
+
+.menu-header{
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.menu-logo{
+    width: 100px;
+    height: 50px;
+    background-image: url('https://angelesdalton.com.mx/img/logo-white.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.menu-button button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    background-image: url('https://i.ibb.co/BnvcNGS/menu-button.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.menu-button button:hover{
+    outline: none;
+    border: none;
+}
+
+.menu-nav nav{
+    padding: 2rem;
+    background-color: var(--dark-grey);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.menu-nav *{
+    color: white;
+    list-style: none;
+    text-decoration: none;
+}
