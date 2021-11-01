@@ -1,0 +1,27 @@
+.ranking{
+    max-width: 600px;
+    /* height: 1000px; */
+    margin: 0 auto;
+    /* background-color: aqua; */
+}
+
+.ranking-header{
+    display: grid;
+    place-items: center;
+}
+
+.ranking-header h2{
+    padding: 2rem;
+}
+
+.ranking-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.ranking-row *{
+    padding: 1rem;
+    border: 1px solid #252525;
+    margin-top: 1rem;
+}
