@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { store } from '../firebaseconfig'
 
 const Ranking = () => {
-    const [leads, setLeads] = useState([])
+    const [leads, setLeads] = useState(undefined)
     const [stats, setStats] = useState(undefined)
 
     const removeDuplicates = leadsArray => {
@@ -28,6 +28,22 @@ const Ranking = () => {
         }
     }
 
+    const sortPeopleByAmount = persons => {
+        let sorted = []
+        // let's find the maximum number of calls made by a salesman
+        let current_number = 0
+        for(let person of persons){
+            if(person.messages_sent >= current_number){
+                sorted.unshift(person)
+                current_number = person.messages_sent
+            } else {
+                sorted.push(person)  
+            }
+        }
+
+        return sorted
+    } 
+
     const getScore = () => {
         let salespersons = []
         for(let person of salesperson_codes){
@@ -40,7 +56,8 @@ const Ranking = () => {
             persn.messages_sent = filtered_by_person.length
             salespersons.push(persn)
         }
-        setStats(salespersons)
+        const sorted_salespersons = sortPeopleByAmount(salespersons)
+        setStats(sorted_salespersons)
     }
 
     useEffect(() => {
@@ -68,7 +85,6 @@ const Ranking = () => {
 
     return (
         <div className='ranking'>
-            <div className='ranking-container'>
                 <section className='ranking-header'>
                     <h2>RANKING</h2>
                 </section>
@@ -76,12 +92,12 @@ const Ranking = () => {
                     {
                         leads?
                         (
-                            <div>
+                            <div className='ranking-container'>
                                 {
                                     stats?
                                     (
                                         stats.map( person => (
-                                            <div className='ranking-row'>
+                                            <div className='ranking-row' key={person.code}>
                                                 <div>
                                                     {person.name}
                                                 </div>
@@ -93,11 +109,13 @@ const Ranking = () => {
                                     )
                                     :
                                     (
-                                        <button
-                                            onClick={ e => getScore()}
-                                        >
-                                            Cargar Ranking
-                                        </button>
+                                        <div className='ranking-button-container'>
+                                            <button
+                                                onClick={ e => getScore()}
+                                            >
+                                                Cargar Ranking
+                                            </button>
+                                        </div>
                                     )
                                 }
                             </div>
@@ -105,12 +123,11 @@ const Ranking = () => {
                         :
                         (
                             <div className='loader'>
-                                <p>Cargando Leads</p>
+                                <p>Cargando Leads...</p>
                             </div>
                         )
                     }
                 </section>
-            </div>
         </div>
     )
 }

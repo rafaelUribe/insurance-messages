@@ -1,5 +1,5 @@
 .ranking{
-    max-width: 600px;
+    max-width: 400px;
     /* height: 1000px; */
     margin: 0 auto;
     /* background-color: aqua; */
@@ -15,13 +15,36 @@
 }
 
 .ranking-row{
+    padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background-color: #f4f4f4;
+    margin-top: 1rem;
+    margin-left: auto;
 }
 
-.ranking-row *{
+.ranking-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ranking-button-container button{
+    background-color: var(--hyundai-blue);
+    border: none;
+    color: white;
     padding: 1rem;
-    border: 1px solid #252525;
-    margin-top: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.ranking .loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader p{
+    font-size: 3rem;
 }
