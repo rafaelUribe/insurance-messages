@@ -17,16 +17,6 @@ const Ranking = () => {
         return filtered
     }
 
-    const getLeads = async () => {
-        try{
-            const { docs } = await store.collection('leads').get()
-            const leadsArray = docs.map( item => ({id:item.id, ...item.data()}))
-            const uniqueValues = removeDuplicates(leadsArray)
-            setLeads(uniqueValues)
-        } catch (e){
-            alert(e)
-        }
-    }
 
     const sortPeopleByAmount = persons => {
         let sorted = []
@@ -61,6 +51,18 @@ const Ranking = () => {
     }
 
     useEffect(() => {
+
+        const getLeads = async () => {
+            try{
+                const { docs } = await store.collection('leads').get()
+                const leadsArray = docs.map( item => ({id:item.id, ...item.data()}))
+                const uniqueValues = removeDuplicates(leadsArray)
+                setLeads(uniqueValues)
+            } catch (e){
+                alert(e)
+            }
+        }
+
         getLeads()
     }, [])
 

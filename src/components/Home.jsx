@@ -10,34 +10,6 @@ const Home = () => {
 
     const google_sheets_url = 'https://sheets.googleapis.com/v4/spreadsheets/144ekOHQpni-iOmnV5KpKoQ2wkQ1597yehQY3Ez3mrkI/values/ronda1!A:E?key=AIzaSyAtlxUEuKZG1L3L9SLjFXXUzCezLkZ6kOU'
 
-    class Customer{
-        constructor(customer_name, customer_phone, customer_car, salesperson_code){
-            this.customer_name = customer_name;
-            this.customer_phone = customer_phone;
-            this.customer_car = customer_car;
-            this.salesperson_code = salesperson_code;
-        }
-    }
-
-    const arrangeCustomers = leads => {
-        const detachheaders = leads.shift()
-        let customers_array = []
-        for(let lead of leads){
-            customers_array.push(new Customer(lead[0],lead[2],lead[3],lead[4]))
-        }
-        setCustomers(customers_array)
-    }
-
-    const getCustomers = async () => {
-        try{
-            const response = await fetch(google_sheets_url)
-            const customers = await response.json()
-            arrangeCustomers(customers.values)
-        } catch (e) {
-            alert(e)
-        }
-    }
-
     const refineCustomerName = full_name => {
         const names = full_name.split(' ')
         let name
@@ -99,7 +71,7 @@ const Home = () => {
     }
 
     const loadLeads = user => {
-        const filtered = customers.filter( customer => customer.salesperson_code == user)
+        const filtered = customers.filter( customer => customer.salesperson_code === user)
         setLeads(filtered)
     }
 
@@ -151,6 +123,33 @@ const Home = () => {
     }
 
     useEffect(() => {
+        class Customer{
+            constructor(customer_name, customer_phone, customer_car, salesperson_code){
+                this.customer_name = customer_name;
+                this.customer_phone = customer_phone;
+                this.customer_car = customer_car;
+                this.salesperson_code = salesperson_code;
+            }
+        }
+
+        const arrangeCustomers = leads => {
+            leads.shift()
+            let customers_array = []
+            for(let lead of leads){
+                customers_array.push(new Customer(lead[0],lead[2],lead[3],lead[4]))
+            }
+            setCustomers(customers_array)
+        }
+
+        const getCustomers = async () => {
+            try{
+                const response = await fetch(google_sheets_url)
+                const customers = await response.json()
+                arrangeCustomers(customers.values)
+            } catch (e) {
+                alert(e)
+            }
+        }
         getCustomers()
     }, [])
 
