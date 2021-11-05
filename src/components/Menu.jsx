@@ -34,7 +34,7 @@ const Menu = () => {
                             </ul>
                             <ul>
                                 <li>
-                                    <a href="/Ranking">Ranking</a>
+                                    <a href="https://6184a9439a8e567b60b09f1d--mystifying-shaw-2268d1.netlify.app/">Ranking</a>
                                 </li>
                             </ul>
                         </nav>
